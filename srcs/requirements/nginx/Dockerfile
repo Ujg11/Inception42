@@ -1,12 +1,27 @@
-# Usa la imagen oficial de Nginx desde Docker Hub
-FROM nginx:alpine
+#Utilitzem la imatge de Debian (es la penultima versio)
+FROM debian:buster
 
-# Copia el archivo index.html a la ubicación predeterminada de Nginx
-COPY tools/index.html /usr/share/nginx/html/index.html
+#Actualitzem i instalem nginx i OpenSSL
+RUN apt -y update && apt install -y nginx openssl
 
-# Copia los certificados SSL
-COPY conf/nginx.crt /etc/ssl/certs/nginx.crt
-COPY conf/nginx.key /etc/ssl/private/nginx.key
+#Generem el certificat autofirmat
+RUN openssl req -newkey rsa:4096 -x509 -sha256 -days 365 -nodes \
+	-out /etc/ssl/ojimenez.42.fr.pem \
+	-keyout /etc/ssl/ojimenez.42.fr.key \
+	-subj "/C=ES/ST=Barcelona/L=Barcelona/O=42 School/OU=Barcelona/CN=ojimenez.42.fr"
 
-# Copia la configuración de Nginx
-COPY conf/nginx.conf /etc/nginx/nginx.conf
+#Copiem l'arxiu de configuracio de nginx
+COPY ./conf/nginx.conf /etc/nginx/nginx.conf
+
+
+#Copiem l'script d'inici
+COPY ./tools/script.sh /
+
+#Donem permisos per executar
+RUN chmod +x /script.sh
+
+#Indiquem que volem exposar el port del HTTPS
+EXPOSE 443
+
+#Iniciem nginx
+CMD ["/script.sh"]
