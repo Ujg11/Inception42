@@ -15,7 +15,7 @@ COPY ./conf/nginx.conf /etc/nginx/nginx.conf
 
 
 #Copiem l'script d'inici
-COPY ./tools/script.sh /
+COPY ./tools/script.sh /script.sh
 
 #Donem permisos per executar
 RUN chmod +x /script.sh
