@@ -2,14 +2,14 @@ FROM debian:buster
 
 #Instalem els paquets per a PHP, php amb mysql, acces a bdd (pdo)...
 RUN apt-get update && apt-get -y install \
-wget \
-php-fpm \
-php-mysql \   
-php-pdo \
-php-gd \
-php-cli \
-php-mbstring \
-&& rm -rf /var/lib/apt/lists/*
+	wget \
+	php-fpm \
+	php-mysql \   
+	php-pdo \
+	php-gd \
+	php-cli \
+	php-mbstring \
+	&& rm -rf /var/lib/apt/lists/*
 
 #Creem el directori per a PHP-FPM
 RUN mkdir -p /run/php
