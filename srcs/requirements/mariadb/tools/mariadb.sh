@@ -1,7 +1,7 @@
 #!/bin/sh
 
 #Inicialitzem la base de dades
-mysql_install_db
+mysqld --initialize-insecure
 
 #Iniciem Mariadb
 /etc/init.d/mysql start

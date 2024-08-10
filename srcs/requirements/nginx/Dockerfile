@@ -1,8 +1,10 @@
 #Utilitzem la imatge de Debian (es la penultima versio)
-FROM debian:buster
+FROM debian:bullseye
 
-#Actualitzem i instalem nginx i OpenSSL
-RUN apt -y update && apt install -y nginx openssl
+#Actualitzem i instalem nginx i OpenSSL i borrem arxius de cache
+RUN apt-get update && \
+	apt-get install -y nginx openssl && \
+	rm -rf /var/lib/apt/lists/*
 
 #Generem el certificat autofirmat
 RUN openssl req -newkey rsa:4096 -x509 -sha256 -days 365 -nodes \

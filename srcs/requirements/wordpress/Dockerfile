@@ -1,4 +1,4 @@
-FROM debian:buster
+FROM debian:bullseye
 
 #Instalem els paquets per a PHP, php amb mysql, acces a bdd (pdo)...
 RUN apt-get update && apt-get -y install \

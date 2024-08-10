@@ -1,4 +1,4 @@
-FROM debian:buster
+FROM debian:bullseye
 
 #Instalació de Mariadb i d'algunes utilitats
 RUN apt-get update && \
