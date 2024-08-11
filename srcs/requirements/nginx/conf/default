@@ -2,7 +2,7 @@
 server{
 	#Escoltem el port 443 i l'escoltem amb soport SSL/TLS (encriptat)
 	listen 443 ssl;
-	listen[::]:443 ssl;
+	listen [::]:443 ssl;
 
 	#Manejem solicituds dirigides a ojimenez.42.fr
 	server_name ojimenez.42.fr;
@@ -27,11 +27,11 @@ server{
 	#Configuracio de les solicituds PHP
 	location ~ \.php$ {
 		#evitar solicituds no valides a PHP
-		try_files $uri=404;
+		try_files $uri =404;
 		#Enrutem al contenidor de WordPress
 		fastcgi_pass wordpress:9000;
-    #NOU
-    fastcgi_split_path_info ^(.+\.php)(/.+)$;
+		#NOU
+		fastcgi_split_path_info ^(.+\.php)(/.+)$;
 		#Arxiu predeterminat per a FastCGI
 		fastcgi_index index.php;
 		#Parametres adicionals per configurar FastCGI
@@ -40,7 +40,7 @@ server{
 		fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
 		#Info adicional sobre la ruta del script PHP
 		fastcgi_param PATH_INFO $fastcgi_path_info;
-    #NOU
-    fastcgi_read_timeout 300;
+		#NOU
+		fastcgi_read_timeout 300;
 	}
 }
