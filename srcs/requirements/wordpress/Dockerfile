@@ -32,4 +32,4 @@ Expose 9000
 ENTRYPOINT ["/usr/local/bin/create_wordpress.sh"]
 
 #Iniciem PHP. El -F es para iniciar en primer pla
-CMD ["php-fpm7.3", "-F"]
+CMD ["php-fpm", "-F"]
