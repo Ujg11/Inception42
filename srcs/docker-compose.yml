@@ -1,5 +1,5 @@
 #Versio de la sintaxis
-#version: '3'
+version: '3'
 
 services:
   #Definición de nginx
