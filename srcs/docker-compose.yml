@@ -15,7 +15,6 @@ services:
     # Serveis dls que depen el contenidor
     depends_on:
       - wordpress
-     ### - mariadb
 
     #Indiquem el port
     ports:
