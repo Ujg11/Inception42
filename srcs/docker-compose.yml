@@ -1,5 +1,5 @@
 #Versio de la sintaxis
-version: '3'
+#version: '3'
 
 services:
   #Definición de nginx
@@ -15,7 +15,7 @@ services:
     # Serveis dls que depen el contenidor
     depends_on:
       - wordpress
-      - mariadb
+     ### - mariadb
 
     #Indiquem el port
     ports:
@@ -30,7 +30,7 @@ services:
 
     #Les xarxes a les que es conecta el container
     networks:
-      - network
+      - ojimenez_network
 
   #Comencem amb el contenidor de mariadb
   mariadb:
@@ -54,7 +54,7 @@ services:
 
     #Xarxes a les que es conecta el container
     networks:
-      - network
+      - ojimenez_network
 
   #Comencem amb el container de WordPress
   wordpress:
@@ -82,7 +82,7 @@ services:
 
     #Xarxes a les que es conecta
     networks:
-      - network
+      - ojimenez_network
 
 #Definim els volums
 volumes:
@@ -95,6 +95,7 @@ volumes:
 #Definim les xarxes
 networks:
   #Xarxa personalitzada que li posem de nom network de tipus bridge (entre contenidors i host)
-  network:
+  ojimenez_network:
+    name: ojimenez_network
     driver: bridge
 

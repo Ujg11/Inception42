@@ -27,6 +27,3 @@ RUN chmod +x /usr/local/bin/wordpress.sql
 ENTRYPOINT ["/usr/local/bin/mariadb.sh"]
 
 CMD ["mysqld"]
-
-
-
